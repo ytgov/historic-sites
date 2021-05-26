@@ -4,7 +4,7 @@ import { body, check, query, validationResult } from "express-validator";
 import { PhotoService } from "../services";
 import { Photo } from "../data";
 import multer from "multer";
-import { createThumbnail } from "../util/image";
+
 
 const photoService = new PhotoService(DB_CONFIG);
 const PAGE_SIZE = 5;
@@ -125,7 +125,7 @@ photoRouter.get("/:id/file/thumbnail",
         await photoService.getFileById(req.params.id)
             .then(async photo => {
                 if (photo && photo.file) {
-                    let t = await createThumbnail(photo.file);
+                    let t = null;
                     return res.contentType("image/jpg").send(t);
                 }
 

@@ -5,7 +5,7 @@ WORKDIR /home/node/app
 COPY --chown=node:node package*.json ./
 
 USER node
-RUN npm install && npm cache clean --force --loglevel=error
+RUN npm install
 
 COPY --chown=node:node . .
 
